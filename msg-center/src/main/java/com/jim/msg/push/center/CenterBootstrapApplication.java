@@ -14,9 +14,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  */
 @EnableEurekaServer
 @SpringBootApplication
-public class CenterBootstrap {
+public class CenterBootstrapApplication {
     public static void main(String[] args) {
-        SpringApplication.run(CenterBootstrap.class);
+        SpringApplication.run(CenterBootstrapApplication.class, args);
     }
     /**
      * 加上账号密码，需要禁止csrf，并开启httpbasic认证

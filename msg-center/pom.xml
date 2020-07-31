@@ -11,14 +11,10 @@
 
     <artifactId>msg-center</artifactId>
 
-
     <dependencies>
-        <!--增加eureka-server的依赖-->
-        <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-eureka-server -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-eureka-server</artifactId>
-            <version>1.4.7.RELEASE</version>
+            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
         </dependency>
 
         <dependency>
@@ -26,13 +22,6 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
     </dependencies>
-    <build>
-        <finalName>msg-center</finalName>
-        <plugins>
-            <plugin>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <groupId>org.springframework.boot</groupId>
-            </plugin>
-        </plugins>
-    </build>
+
+
 </project>
