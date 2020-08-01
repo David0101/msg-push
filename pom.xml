@@ -17,7 +17,7 @@
     <modules>
         <module>msg-center</module>
         <module>msg-server</module>
-        <module>msg-common</module>
+        <module>msg-commons</module>
     </modules>
 
     <properties>

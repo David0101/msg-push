@@ -1,11 +1,10 @@
 spring:
     application:
         name: push-center
-
     security:
         user:
-            name: push-center
-            password: 123456
+          name: nsb-center
+          password: BPxU0rew
 
 
 server:
