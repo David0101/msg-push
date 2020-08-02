@@ -32,7 +32,7 @@ public class MsgServerApplication {
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(MsgServerApplication.class);
 
-        app.addListeners(new ApplicationPidFileWriter("./msg-server.pid"),new ApplicationPortFileWriter());
+        app.addListeners(new ApplicationPidFileWriter("./msg-server.pid"),new ApplicationPortFileWriter("./msg-server.port"));
         app.setWebApplicationType(WebApplicationType.NONE);
         app.run(args);
         log.info("MsgServerApplication 启动");
