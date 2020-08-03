@@ -15,7 +15,7 @@ import java.nio.file.attribute.PosixFilePermission;
 import java.util.Set;
 
 /**
- * 启动时记录pid 和 port 启动脚本时需要的话可以用
+ * 启动时记录pid 和 port ,有时候需要写一些shell脚本处理一些事情
  */
 public class ApplicationPortFileWriter implements ApplicationListener<ApplicationStartedEvent>{
 

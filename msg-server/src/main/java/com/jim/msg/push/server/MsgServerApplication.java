@@ -12,6 +12,8 @@ import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
+
+import java.util.concurrent.TimeUnit;
 //import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
@@ -35,6 +37,6 @@ public class MsgServerApplication {
         app.addListeners(new ApplicationPidFileWriter("./msg-server.pid"),new ApplicationPortFileWriter("./msg-server.port"));
         app.setWebApplicationType(WebApplicationType.NONE);
         app.run(args);
-        log.info("MsgServerApplication 启动");
+
     }
 }
