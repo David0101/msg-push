@@ -18,6 +18,7 @@
         <module>msg-center</module>
         <module>msg-server</module>
         <module>msg-commons</module>
+        <module>msg-rounter</module>
     </modules>
 
     <properties>

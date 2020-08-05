@@ -3,9 +3,15 @@ package com.jim.msg.push.server.handle;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.annotation.OnConnect;
 import com.corundumstudio.socketio.annotation.OnDisconnect;
-import com.jim.msg.push.server.common.SocketIOConst;
+
+
+import com.jim.msg.push.rounter.commons.SocketIOHelper;
+import com.jim.msg.push.server.dto.SocketIOSessionDto;
 import lombok.extern.slf4j.Slf4j;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.util.UUID;
 
@@ -18,13 +24,18 @@ import java.util.UUID;
 @Slf4j
 public class SocketHandler {
 
+    @Autowired
+    private SocketIOHelper socketIOHelper;
     @OnConnect
     public void onConnect(SocketIOClient socketIOClient){
         String sessionId = socketIOClient.getSessionId().toString();
-        String platform = socketIOClient.getHandshakeData().getSingleUrlParam("platform");
-        String userId = socketIOClient.getHandshakeData().getSingleUrlParam("userId");
-        String accessToken = socketIOClient.getHandshakeData().getSingleUrlParam("accessToken");
-        log.info("clent connect");
+        String userName = socketIOClient.getHandshakeData().getSingleUrlParam("userName");
+        log.info("onConnect : userName:{}", userName);
+        if(!StringUtils.isEmpty(userName)){
+            SocketIOSessionDto socketIOSessionDto = new SocketIOSessionDto(sessionId,userName,socketIOHelper.getLocalConsumerQueue());
+            int a = 0;
+        }
+        int a;
     }
 
     @OnDisconnect

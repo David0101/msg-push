@@ -3,7 +3,7 @@ package com.jim.msg.push.server.handle;
 import com.corundumstudio.socketio.AckRequest;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.annotation.OnEvent;
-import com.jim.msg.push.server.DTO.MessageDto;
+import com.jim.msg.push.server.dto.MessageDto;
 import com.jim.msg.push.server.common.SocketIOConst;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

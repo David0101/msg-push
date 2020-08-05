@@ -30,7 +30,7 @@ eureka:
 #  password:
 #  database: 12
 
-socketio:
-  rabbitmq:
-    consumer:
-      queue: websocket.redirect.queue-A
+#socketio:
+#  rabbitmq:
+#    consumer:
+#      queue: websocket.redirect.queue-A

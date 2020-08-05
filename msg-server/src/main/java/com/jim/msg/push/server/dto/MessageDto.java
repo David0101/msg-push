@@ -1,4 +1,4 @@
-package com.jim.msg.push.server.DTO;
+package com.jim.msg.push.server.dto;
 
 import lombok.Data;
 
