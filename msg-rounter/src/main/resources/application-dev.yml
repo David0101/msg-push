@@ -1,0 +1,10 @@
+
+redis:
+  server: 127.0.0.1
+  port: 6379
+  password:
+  database: 10
+socketio:
+  rabbitmq:
+    consumer:
+      queue: websocket.redirect.queue-A

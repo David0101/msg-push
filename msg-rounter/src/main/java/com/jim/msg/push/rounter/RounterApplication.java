@@ -14,7 +14,6 @@ import org.springframework.context.annotation.Import;
  */
 @Slf4j
 @SpringBootApplication
-
 public class RounterApplication {
     public static void main(String[] args) {
         SpringApplication.run(RounterApplication.class,args);

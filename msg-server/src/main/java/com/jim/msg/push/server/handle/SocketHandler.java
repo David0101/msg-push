@@ -5,7 +5,10 @@ import com.corundumstudio.socketio.annotation.OnConnect;
 import com.corundumstudio.socketio.annotation.OnDisconnect;
 
 
+import com.jim.msg.push.commons.util.JacksonUtil;
+import com.jim.msg.push.rounter.cache.RedisClient;
 import com.jim.msg.push.rounter.commons.SocketIOHelper;
+import com.jim.msg.push.server.common.SocketIOConst;
 import com.jim.msg.push.server.dto.SocketIOSessionDto;
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,14 +28,17 @@ import java.util.UUID;
 public class SocketHandler {
 
     @Autowired
-    private SocketIOHelper socketIOHelper;
+    private SocketIOHelper helper;
     @OnConnect
     public void onConnect(SocketIOClient socketIOClient){
         String sessionId = socketIOClient.getSessionId().toString();
         String userName = socketIOClient.getHandshakeData().getSingleUrlParam("userName");
         log.info("onConnect : userName:{}", userName);
         if(!StringUtils.isEmpty(userName)){
-            SocketIOSessionDto socketIOSessionDto = new SocketIOSessionDto(sessionId,userName,socketIOHelper.getLocalConsumerQueue());
+            SocketIOSessionDto socketIOSessionDto = new SocketIOSessionDto(sessionId,userName,helper.getLocalConsumerQueue());
+            String sessionJson = JacksonUtil.obj2String(socketIOSessionDto);
+            String sessionIdKey = helper.getCachSessionKey(sessionId);
+            RedisClient.setValue(sessionIdKey,sessionJson, SocketIOConst.SESSION_TIME_OUT_SECOND);
             int a = 0;
         }
         int a;

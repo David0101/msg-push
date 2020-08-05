@@ -1,5 +1,6 @@
 package com.jim.msg.push.rounter.commons;
 
+import com.jim.msg.push.commons.constants.CacheKeys;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -16,6 +17,12 @@ public class SocketIOHelper {
     @Value("${socketio.rabbitmq.consumer.queue}")
     private String localConsumerQueue;
 
+    public String getCachSessionKey(String sessionId){
+        if(org.apache.commons.lang3.StringUtils.isNotBlank(sessionId)){
+            return CacheKeys.USER_SOCKET_CLIENT_SESSION+sessionId;
+        }
+        return "";
+    }
     public String getLocalConsumerQueue() {
         return localConsumerQueue;
     }
