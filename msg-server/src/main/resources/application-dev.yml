@@ -35,7 +35,7 @@ eureka:
 #  port: 6379
 #  password: RfyS8wJZCrM3
 #  database: 12
-#socketio:
-#  rabbitmq:
-#    consumer:
-#      queue: websocket.redirect.queue-A
+socketio:
+  rabbitmq:
+    consumer:
+      queue: websocket.redirect.queue-A
