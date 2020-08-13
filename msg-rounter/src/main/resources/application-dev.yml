@@ -1,9 +1,9 @@
 
 redis:
-  server: 127.0.0.1
+  server: r-wz9l1uaq7hbkntiin4.redis.rds.aliyuncs.com
   port: 6379
-  password:
-  database: 10
+  password: RfyS8wJZCrM3
+  database: 12
 socketio:
   rabbitmq:
     consumer:

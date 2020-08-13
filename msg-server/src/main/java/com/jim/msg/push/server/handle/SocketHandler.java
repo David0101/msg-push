@@ -38,6 +38,7 @@ public class SocketHandler {
             SocketIOSessionDto socketIOSessionDto = new SocketIOSessionDto(sessionId,userName,helper.getLocalConsumerQueue());
             String sessionJson = JacksonUtil.obj2String(socketIOSessionDto);
             String sessionIdKey = helper.getCachSessionKey(sessionId);
+            String jsonStr = RedisClient.getValue( "yunzhangxiao:department:userId:444");
             RedisClient.setValue(sessionIdKey,sessionJson, SocketIOConst.SESSION_TIME_OUT_SECOND);
             int a = 0;
         }
