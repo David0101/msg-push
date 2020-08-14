@@ -1,10 +1,12 @@
 package com.jim.msg.push.rounter.commons;
 
 import com.jim.msg.push.commons.constants.CacheKeys;
+import com.jim.msg.push.commons.constants.RabbitMQConst;
 import com.jim.msg.push.commons.util.JacksonUtil;
 import com.jim.msg.push.rounter.dto.SocketIODisconnectMsgSendDto;
 import com.jim.msg.push.rounter.dto.SocketIOSessionDto;
 import com.jim.msg.push.rounter.mq.WebSocketDisconnectMsgSend;
+
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +25,17 @@ import java.util.Date;
 @Component
 @Slf4j
 public class SocketIOHelper {
-    @Autowired
-    private WebSocketDisconnectMsgSend webSocketDisconnectMsgSend;
+
+
+
     @Autowired
     private RedisTemplate redisTemplate;
+
+    @Autowired
+    private WebSocketDisconnectMsgSend webSocketDisconnectMsgSend;
+
+
+
     //读取shell脚本 配置文件信息
     @Value("${socketio.rabbitmq.consumer.queue}")
     private String localConsumerQueue;
@@ -73,7 +82,7 @@ public class SocketIOHelper {
             sendDto.setDisconnectTime(disconnectTime);
             sendDto.setSessionId(sessionId);
             //获取断线通知
-            webSocketDisconnectMsgSend.send("", sendDto);
+            webSocketDisconnectMsgSend.send(RabbitMQConst.Queue.WEB_SOCKET_QUEUE, sendDto);
 
             String userKey = this.getCacheSessionUserKey( redisUser.getUserName());
             redisTemplate.opsForHash().delete(userKey,sessionId);//

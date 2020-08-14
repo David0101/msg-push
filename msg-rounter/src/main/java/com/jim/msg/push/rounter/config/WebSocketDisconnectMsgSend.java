@@ -6,8 +6,10 @@ import com.jim.msg.push.rounter.dto.SocketIODisconnectMsgSendDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
@@ -16,15 +18,19 @@ import java.util.UUID;
  * @author: jim
  * @create: 2020-08-14 14:56
  */
-@Component
+@Service(value = "webSocketDisconnectMsg")
 @Slf4j
 public class WebSocketDisconnectMsgSend {
+
     @Autowired
     private AmqpTemplate amqpTemplate;
 
     @Autowired
     private ObjectMapper objectMapper;
-    @Async
+    @Bean
+    String  test() {
+        return new String("11");
+    }
     public void send(String queue, SocketIODisconnectMsgSendDto message) {
         try {
             String uuid = UUID.randomUUID().toString();

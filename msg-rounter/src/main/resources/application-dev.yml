@@ -1,4 +1,14 @@
-
+spring:
+  rabbitmq:
+    host: 120.79.172.150
+    port: 5672
+    username: admin
+    password: 123456
+    listener:
+      simple:
+        max-concurrency: 8
+        concurrency: 4
+        prefetch: 50
 redis:
   server: r-wz9l1uaq7hbkntiin4.redis.rds.aliyuncs.com
   port: 6379
