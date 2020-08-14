@@ -17,15 +17,15 @@ import org.springframework.context.annotation.Configuration;
 public class FanoutRabbitConfig {
     @Bean
     public Queue webSocketQueue() {
-        return new Queue(RabbitMQConst.Queue.WEB_SOCKET_QUEUE,true);
+        return new Queue(RabbitMQConst.Queue.WEB_SOCKET_QUEUE, true, false, false, null);
     }
     @Bean
     FanoutExchange webSocketExchange() {
-        return new FanoutExchange(RabbitMQConst.Exchange.Fanout.WEB_SOCKET_EXCHANGE);
+        return new FanoutExchange(RabbitMQConst.Exchange.Fanout.WEB_SOCKET_EXCHANGE,true,false);
     }
     @Bean
     FanoutExchange webSocketDisconnectExchange(){
-        return new FanoutExchange(RabbitMQConst.Exchange.Fanout.WEB_SOCKET_DISCONNECT_EXCAHNGE);
+        return new FanoutExchange(RabbitMQConst.Exchange.Fanout.WEB_SOCKET_DISCONNECT_EXCAHNGE,true,false);
     }
 //    @Bean
 //    Binding bindingFanoutWebSocket() {

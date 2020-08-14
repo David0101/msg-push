@@ -9,7 +9,7 @@ public class RabbitMQConst {
     public interface Exchange {
          class Fanout{
              public static final String WEB_SOCKET_DISCONNECT_EXCAHNGE = "websocket.disconnect.exchange";
-             public static final String WEB_SOCKET_EXCHANGE = "websocket.exchange2";
+             public static final String WEB_SOCKET_EXCHANGE = "websocket.exchange";
 
         }
         class Direct{

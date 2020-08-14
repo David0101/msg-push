@@ -7,16 +7,16 @@ spring:
     user:
       name: nsb-center
       password: BPxU0rew
-#  rabbitmq:
-#    host: 172.18.155.38
-#    port: 5672
-#    username: niushibang
-#    password: niushibang
-#    listener:
-#      simple:
-#        max-concurrency: 8
-#        concurrency: 4
-#        prefetch: 50
+  rabbitmq:
+    host: 120.79.172.150
+    port: 5672
+    username: admin
+    password: 123456
+    listener:
+      simple:
+        max-concurrency: 8
+        concurrency: 4
+        prefetch: 50
 
 
 eureka:
