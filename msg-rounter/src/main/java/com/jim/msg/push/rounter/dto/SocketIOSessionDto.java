@@ -1,4 +1,4 @@
-package com.jim.msg.push.server.dto;
+package com.jim.msg.push.rounter.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -10,8 +10,9 @@ import com.corundumstudio.socketio.annotation.OnDisconnect;
 import com.jim.msg.push.commons.util.JacksonUtil;
 //import com.jim.msg.push.rounter.cache.RedisClient;
 import com.jim.msg.push.rounter.commons.SocketIOHelper;
+import com.jim.msg.push.rounter.dto.SocketIOSessionDto;
 import com.jim.msg.push.server.common.SocketIOConst;
-import com.jim.msg.push.server.dto.SocketIOSessionDto;
+
 import com.jim.msg.push.server.dto.SocketIOUserDto;
 import lombok.extern.slf4j.Slf4j;
 
@@ -40,6 +41,7 @@ public class SocketHandler {
     @OnConnect
     public void onConnect(SocketIOClient socketIOClient){
         String sessionId = socketIOClient.getSessionId().toString();
+        //String platform = "test-platform";//socketIOClient.getHandshakeData().getSingleUrlParam("platform");
         String userName = socketIOClient.getHandshakeData().getSingleUrlParam("userName");
         log.info("onConnect : userName:{}", userName);
         if(!StringUtils.isEmpty(userName)){
@@ -58,6 +60,7 @@ public class SocketHandler {
             //socketIOClient.joinRoom(platform);
 
             log.info("session存入redis,{}",sessionJson);
+            log.info("session存入redis socketIOUserDto,{}",socketIOUserDto);
         }
         int a;
     }
@@ -65,6 +68,10 @@ public class SocketHandler {
     @OnDisconnect
     public void onDisconnect(SocketIOClient socketIOClient){
         UUID uuid = socketIOClient.getSessionId();
+        if(uuid != null){
+            String sesssionId = uuid.toString();
+            helper.logout(sesssionId);
+        }
         log.info("登出："+uuid.toString());
     }
 }
