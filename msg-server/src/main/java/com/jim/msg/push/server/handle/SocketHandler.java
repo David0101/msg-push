@@ -12,6 +12,7 @@ import com.jim.msg.push.commons.util.JacksonUtil;
 import com.jim.msg.push.rounter.commons.SocketIOHelper;
 import com.jim.msg.push.server.common.SocketIOConst;
 import com.jim.msg.push.server.dto.SocketIOSessionDto;
+import com.jim.msg.push.server.dto.SocketIOUserDto;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ import org.springframework.util.StringUtils;
 
 import java.util.Set;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @program: msg-push
@@ -35,7 +37,6 @@ public class SocketHandler {
     private SocketIOHelper helper;
     @Autowired
     private RedisTemplate redisTemplate;
-    public static String BASE_TOP_COURSE_KEY = "base:topcourse:*";
     @OnConnect
     public void onConnect(SocketIOClient socketIOClient){
         String sessionId = socketIOClient.getSessionId().toString();
@@ -45,12 +46,18 @@ public class SocketHandler {
             SocketIOSessionDto socketIOSessionDto = new SocketIOSessionDto(sessionId,userName,helper.getLocalConsumerQueue());
             String sessionJson = JacksonUtil.obj2String(socketIOSessionDto);
             String sessionIdKey = helper.getCachSessionKey(sessionId);
-            Set<String> keys = redisTemplate.keys(BASE_TOP_COURSE_KEY);
-            redisTemplate.opsForValue().set("111","222");
-            Object test = redisTemplate.opsForValue().get("111");
-//            Object jsonStr = RedisClient.getValue( "yunzhangxiao:department:userId:000502b4-34a3-4245-9239-2d0f2e37d1f2");
-//            RedisClient.setValue(sessionIdKey,sessionJson, SocketIOConst.SESSION_TIME_OUT_SECOND);
-            int a = 0;
+
+            redisTemplate.opsForValue().set(sessionIdKey,sessionJson);
+            Object test = redisTemplate.opsForValue().get(sessionIdKey);
+            SocketIOUserDto socketIOUserDto = new SocketIOUserDto(sessionId,helper.getLocalConsumerQueue());
+            String userIdKey = helper.getCacheSessionUserKey(userName);
+
+            redisTemplate.opsForHash().put(userIdKey,sessionId,socketIOUserDto);
+            redisTemplate.expire(userIdKey,SocketIOConst.SESSION_TIME_OUT_SECOND, TimeUnit.SECONDS);
+
+            //socketIOClient.joinRoom(platform);
+
+            log.info("session存入redis,{}",sessionJson);
         }
         int a;
     }

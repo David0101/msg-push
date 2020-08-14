@@ -3,7 +3,7 @@ redis:
   server: r-wz9l1uaq7hbkntiin4.redis.rds.aliyuncs.com
   port: 6379
   password: RfyS8wJZCrM3
-  database: 12
+  database: 5
   pool:
       maxTotal: 30
       minIdle: 10
@@ -12,9 +12,3 @@ socketio:
   rabbitmq:
     consumer:
       queue: websocket.redirect.queue-A
-spring:
-  redis:
-    host: r-wz9l1uaq7hbkntiin4.redis.rds.aliyuncs.com
-    port: 6379
-    password: RfyS8wJZCrM3
-    database: 12

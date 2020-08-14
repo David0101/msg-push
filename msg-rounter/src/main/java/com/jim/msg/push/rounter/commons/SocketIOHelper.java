@@ -2,6 +2,7 @@ package com.jim.msg.push.rounter.commons;
 
 import com.jim.msg.push.commons.constants.CacheKeys;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -23,7 +24,16 @@ public class SocketIOHelper {
         }
         return "";
     }
+
+    public String getCacheSessionUserKey(String userId) {
+        if (StringUtils.isNotBlank(userId) ) {
+            return CacheKeys.USER_SOCKET_CLIENT_USER + "#" + userId;
+        }
+        return "";
+    }
+
     public String getLocalConsumerQueue() {
         return localConsumerQueue;
     }
+
 }

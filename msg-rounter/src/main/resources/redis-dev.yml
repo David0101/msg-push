@@ -1,9 +1,0 @@
-redis:
-  hostName: r-wz9l1uaq7hbkntiin4pd.redis.rds.aliyuncs.com
-  port: 6379
-  database: 2
-  password: RfyS8wJZCrM3
-  pool:
-    maxTotal: 30
-    minIdle: 10
-    maxWaitMillis: 10000

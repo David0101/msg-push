@@ -29,8 +29,7 @@ import java.time.Duration;
  * @author: jim
  * @create: 2020-08-05 14:48
  */
-//@Component
-//@Lazy(value = false)
+
 @Configuration
 public class RedisConfig {
     private static  final Logger LOG = LoggerFactory.getLogger(RedisConfig.class);
@@ -51,14 +50,7 @@ public class RedisConfig {
     private int maxWaitMillis;
 
 
-//    @Bean
-//    public JedisConnectionFactory redisConnectionFactory() {
-//
-//        RedisStandaloneConfiguration config = new RedisStandaloneConfiguration("r-wz9l1uaq7hbkntiin4pd.redis.rds.aliyuncs.com", 6379);
-//        config.setPassword("RfyS8wJZCrM3");
-//        config.setDatabase(2);
-//        return new JedisConnectionFactory(config);
-//    }
+
 
     @Bean
     @ConfigurationProperties()
@@ -82,7 +74,7 @@ public class RedisConfig {
 
 
     @Bean
-    @ConfigurationProperties(prefix="redis")
+    @ConfigurationProperties()
     public RedisStandaloneConfiguration redisStandaloneConfiguration(){
         RedisStandaloneConfiguration redisConfiguration = new RedisStandaloneConfiguration();
         redisConfiguration.setPassword(password);

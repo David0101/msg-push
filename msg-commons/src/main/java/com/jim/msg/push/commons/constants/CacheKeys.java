@@ -7,4 +7,5 @@ package com.jim.msg.push.commons.constants;
  */
 public class CacheKeys {
     public static final String USER_SOCKET_CLIENT_SESSION = "user:socket:client:session:";
+    public static final String USER_SOCKET_CLIENT_USER = "user:socketClient:user:";
 }

@@ -9,16 +9,14 @@ import java.io.Serializable;
 /**
  * @program: msg-push
  * @author: jim
- * @create: 2020-08-05 12:12
+ * @create: 2020-08-13 18:37
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SocketIOSessionDto implements Serializable {
+public class SocketIOUserDto  implements Serializable {
 
-    private static final long serialVersionUID = -8540736339974404435L;
+    private static final long serialVersionUID = 245408918020086603L;
     private String sessionId;
-    private String userName;
     private String consumerQueue;
 }
-
