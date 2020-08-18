@@ -2,11 +2,14 @@ package com.jim.msg.push.rounter.commons;
 
 import com.jim.msg.push.commons.constants.CacheKeys;
 import com.jim.msg.push.commons.constants.RabbitMQConst;
+import com.jim.msg.push.commons.enu.SocketIOMsgRedirectTypeEnum;
 import com.jim.msg.push.commons.util.JacksonUtil;
 import com.jim.msg.push.rounter.dto.SocketIODisconnectMsgSendDto;
+import com.jim.msg.push.rounter.dto.SocketIOMsgRedirectDto;
 import com.jim.msg.push.rounter.dto.SocketIOSessionDto;
 import com.jim.msg.push.rounter.mq.WebSocketDisconnectMsgSend;
 
+import com.jim.msg.push.rounter.mq.WebSocketMsgRedirectSend;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +37,8 @@ public class SocketIOHelper {
 
     @Autowired
     private WebSocketDisconnectMsgSend webSocketDisconnectMsgSend;
-
+    @Autowired
+    private WebSocketMsgRedirectSend redirectSend;
 
 
     //正式服读取shell脚本 配置文件信息
@@ -103,6 +107,32 @@ public class SocketIOHelper {
         } catch (Exception e) {
             log.error("resetSessionTimeException:", e);
         }
+
+    }
+
+    public void allResponse(Object message, String event) {
+        redirectSend.sendAll(this.getAllRedirectMsg(message, event));
+    }
+    private SocketIOMsgRedirectDto getRoomRedirectMsg(String room, Object message, String event) {
+        SocketIOMsgRedirectDto roomMsg = new SocketIOMsgRedirectDto();
+        roomMsg.setRedirectSendType(SocketIOMsgRedirectTypeEnum.ROOM.getValue());
+        roomMsg.setRoom(room);
+        roomMsg.setMessage(message);
+        roomMsg.setEvent(event);
+        return roomMsg;
+    }
+
+    private SocketIOMsgRedirectDto getAllRedirectMsg(Object message, String event) {
+        SocketIOMsgRedirectDto allMsg = new SocketIOMsgRedirectDto();
+        allMsg.setRedirectSendType(SocketIOMsgRedirectTypeEnum.ALL.getValue());
+        allMsg.setMessage(message);
+        allMsg.setEvent(event);
+        return allMsg;
+    }
+    public void allResponse(Object message, String event, String room) {
+        redirectSend.sendAll(this.getRoomRedirectMsg(room, message, event));
+    }
+    public void response(Object message ,String event,String sessionId,String consumerQueue ){
 
     }
 }

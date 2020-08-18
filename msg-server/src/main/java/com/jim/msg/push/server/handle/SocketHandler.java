@@ -38,7 +38,7 @@ public class SocketHandler {
     @OnConnect
     public void onConnect(SocketIOClient socketIOClient){
         String sessionId = socketIOClient.getSessionId().toString();
-        //String platform = "test-platform";//socketIOClient.getHandshakeData().getSingleUrlParam("platform");
+        String platform = "test.baidu.com-platform";//socketIOClient.getHandshakeData().getSingleUrlParam("platform");
         String userName = socketIOClient.getHandshakeData().getSingleUrlParam("userName");
         log.info("onConnect : userName:{}", userName);
         if(!StringUtils.isEmpty(userName)){
@@ -54,7 +54,7 @@ public class SocketHandler {
             redisTemplate.opsForHash().put(userIdKey,sessionId,socketIOUserDto);
             redisTemplate.expire(userIdKey,SocketIOConst.SESSION_TIME_OUT_SECOND, TimeUnit.SECONDS);
 
-            //socketIOClient.joinRoom(platform);
+            socketIOClient.joinRoom(platform);
 
             log.info("session存入redis,{}",sessionJson);
             log.info("session存入redis socketIOUserDto,{}",socketIOUserDto);

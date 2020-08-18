@@ -3,6 +3,7 @@ package com.jim.msg.push.server;
 import com.jim.msg.push.commons.listener.ApplicationPortFileWriter;
 import com.jim.msg.push.rounter.commons.SocketIOHelper;
 import com.jim.msg.push.rounter.mq.WebSocketDisconnectMsgSend;
+import com.jim.msg.push.rounter.mq.WebSocketMsgRedirectSend;
 import lombok.extern.slf4j.Slf4j;
 //import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -35,7 +36,7 @@ import java.util.concurrent.TimeUnit;
 //@EnableHystrix
 @EnableScheduling
 @EnableAsync
-@Import({SocketIOHelper.class, WebSocketDisconnectMsgSend.class})
+@Import({SocketIOHelper.class, WebSocketDisconnectMsgSend.class, WebSocketMsgRedirectSend.class})
 
 public class MsgServerApplication {
     public static void main(String[] args) {
