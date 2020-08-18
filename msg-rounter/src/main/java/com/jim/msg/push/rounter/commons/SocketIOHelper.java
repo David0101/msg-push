@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @program: msg-push
@@ -36,7 +37,7 @@ public class SocketIOHelper {
 
 
 
-    //读取shell脚本 配置文件信息
+    //正式服读取shell脚本 配置文件信息
     @Value("${socketio.rabbitmq.consumer.queue}")
     private String localConsumerQueue;
 
@@ -89,5 +90,19 @@ public class SocketIOHelper {
             String sessionKey = this.getCacheSessionKey(redisUser.getSessionId());
             redisTemplate.delete(sessionKey);
         }
+    }
+    public void resetSessionTime(String sessionId) {
+        try {
+            SocketIOSessionDto redisUser = this.getRedisUser(sessionId);
+            if (redisUser != null) {
+                String userKey = this.getCacheSessionUserKey( redisUser.getUserName());
+                redisTemplate.expire(userKey,SocketIOConst.SESSION_TIME_OUT_SECOND, TimeUnit.SECONDS);
+                String cacheSessionKey = this.getCacheSessionKey(sessionId);
+                redisTemplate.expire(cacheSessionKey,SocketIOConst.SESSION_TIME_OUT_SECOND,TimeUnit.SECONDS);
+            }
+        } catch (Exception e) {
+            log.error("resetSessionTimeException:", e);
+        }
+
     }
 }

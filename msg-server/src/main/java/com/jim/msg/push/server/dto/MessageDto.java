@@ -1,6 +1,10 @@
 package com.jim.msg.push.server.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
 
 /**
  * @program: msg-push
@@ -9,24 +13,15 @@ import lombok.Data;
  */
 
 @Data
-public class MessageDto {
-    /**
-     * 源客户端用户名
-     */
+@NoArgsConstructor
+@AllArgsConstructor
+public class MessageDto implements Serializable {
+
     private String sourceUserName;
 
-    /**
-     * 目标客户端用户名
-     */
     private String targetUserName;
 
-    /**
-     * 消息类型
-     */
     private String msgType;
 
-    /**
-     * 消息内容
-     */
     private String msgContent;
 }

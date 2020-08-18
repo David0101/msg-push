@@ -41,9 +41,9 @@ socketio:
       queue: websocket.redirect.queue-A
 
 redis:
-  server: r-wz9l1uaq7hbkntiin4.redis.rds.aliyuncs.com
+  server: localhost
   port: 6379
-  password: RfyS8wJZCrM3
+  password:
   database: 5
   pool:
       maxTotal: 30

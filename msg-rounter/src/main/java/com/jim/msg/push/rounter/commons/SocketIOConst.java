@@ -1,4 +1,4 @@
-package com.jim.msg.push.server.common;
+package com.jim.msg.push.rounter.commons;
 
 /**
  * @program: msg-push
@@ -13,4 +13,5 @@ public class SocketIOConst {
             String SEND_MSG_EVENT = "sendMsg";
         }
     }
+
 }

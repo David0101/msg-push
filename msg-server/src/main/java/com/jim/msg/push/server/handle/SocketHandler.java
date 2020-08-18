@@ -1,7 +1,5 @@
 package com.jim.msg.push.server.handle;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.annotation.OnConnect;
 import com.corundumstudio.socketio.annotation.OnDisconnect;
@@ -11,7 +9,7 @@ import com.jim.msg.push.commons.util.JacksonUtil;
 //import com.jim.msg.push.rounter.cache.RedisClient;
 import com.jim.msg.push.rounter.commons.SocketIOHelper;
 import com.jim.msg.push.rounter.dto.SocketIOSessionDto;
-import com.jim.msg.push.server.common.SocketIOConst;
+import com.jim.msg.push.rounter.commons.SocketIOConst;
 
 import com.jim.msg.push.server.dto.SocketIOUserDto;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +19,6 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -74,4 +71,6 @@ public class SocketHandler {
         }
         log.info("登出："+uuid.toString());
     }
+
+
 }
