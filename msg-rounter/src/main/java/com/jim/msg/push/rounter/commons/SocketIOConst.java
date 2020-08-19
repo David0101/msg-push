@@ -13,5 +13,18 @@ public class SocketIOConst {
             String SEND_MSG_EVENT = "sendMsg";
         }
     }
+    public interface Rsp {
+        interface Msg {
+            Integer SERVER_DEFAULT_SUCCESS_RESPONSE = 200;
+        }
 
+        interface Event {
+            String SERVER_LOGIN_RSP_EVENT = "serverLoginRspEvent";
+            String ERROR_EVENT = "errorEvent";
+
+
+            String GET_MSG_EVEN = "get_msg_even";
+        }
+
+    }
 }

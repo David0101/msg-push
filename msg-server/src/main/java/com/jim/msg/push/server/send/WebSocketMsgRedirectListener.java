@@ -39,7 +39,8 @@ public class WebSocketMsgRedirectListener {
             log.info("接收到重定向消息:{}", message);
             if(redirectDto != null){
                 List<SocketIOMsgRedirectDto> response = new ArrayList<>();
-
+                // TODO: 2020/8/19 ,如果不是本机器消息通过mq转发逻辑
+                //socketIOHelper.response(responseData,msgDto.getEvent(),userDto.getSessionId(),userDto.getConsumerQueue());
             }
         }
     }

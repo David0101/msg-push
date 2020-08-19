@@ -19,6 +19,7 @@
         <module>msg-server</module>
         <module>msg-commons</module>
         <module>msg-rounter</module>
+        <module>msg-others-service</module>
     </modules>
 
     <properties>

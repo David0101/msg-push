@@ -133,6 +133,14 @@ public class SocketIOHelper {
         redirectSend.sendAll(this.getRoomRedirectMsg(room, message, event));
     }
     public void response(Object message ,String event,String sessionId,String consumerQueue ){
-
+        redirectSend.send(consumerQueue, this.getPersonalRedirectMsg(sessionId, message, event));
+    }
+    private SocketIOMsgRedirectDto getPersonalRedirectMsg(String sessionId, Object message, String event) {
+        SocketIOMsgRedirectDto personalMsg = new SocketIOMsgRedirectDto();
+        personalMsg.setRedirectSendType(SocketIOMsgRedirectTypeEnum.PERSONAL.getValue());
+        personalMsg.setSessionId(sessionId);
+        personalMsg.setMessage(message);
+        personalMsg.setEvent(event);
+        return personalMsg;
     }
 }
