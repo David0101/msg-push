@@ -5,8 +5,8 @@ eureka-client:
 spring:
   security:
     user:
-      name: nsb-center
-      password: BPxU0rew
+      name: center
+      password: 123456
   rabbitmq:
     host: 127.0.0.1
     port: 5672
