@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.niushibang.auth.dao.ClientDetailMapper" >
+
+    <resultMap id="oauthClientDetail" type="com.niushibang.auth.entity.OauthClientDetail">
+        <id column="client_id" javaType="string" property="clientId" />
+        <result column="resource_ids" javaType="string" property="resourceIds" />
+        <result column="client_secret" javaType="string" property="clientSecret" />
+        <result column="scope" javaType="string" property="scope" typeHandler="com.niushibang.auth.dao.typehandler.CommaSplitStringToListTypeHandler"/>
+        <result column="authorized_grant_types" javaType="string" property="authroizedGrantTypes" typeHandler="com.niushibang.auth.dao.typehandler.CommaSplitStringToListTypeHandler"/>
+        <result column="web_server_redirect_uri" javaType="string" property="webServerRedirectUri" />
+        <result column="authorities" javaType="string" property="authroities" />
+        <result column="access_token_validity" javaType="boolean" property="accessTokenValidity" typeHandler="com.niushibang.auth.dao.typehandler.IntegerToBooleanTypeHandler" />
+        <result column="refresh_token_validity" javaType="boolean" property="refreshTokenValidity" typeHandler="com.niushibang.auth.dao.typehandler.IntegerToBooleanTypeHandler" />
+        <result column="additional_information" javaType="String" property="additionalInfomation" />
+        <result column="autoapprove" javaType="boolean" property="autoApprove" />
+        <result column="available" javaType="boolean" property="available" typeHandler="com.niushibang.auth.dao.typehandler.IntegerToBooleanTypeHandler" />
+    </resultMap>
+
+    <sql id="oauth2ClientDetailField"> client_id,resource_ids,client_secret,scope,authorized_grant_types,web_server_redirect_uri,authorities,access_token_validity,refresh_token_validity,additional_information,autoapprove,available </sql>
+
+    <select id="findClientDetailByClientId" resultMap="oauthClientDetail">
+        select  <include refid="oauth2ClientDetailField" /> from oauth_client_details where client_id = #{clientId}
+    </select>
+
+</mapper>

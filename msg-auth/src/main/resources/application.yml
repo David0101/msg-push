@@ -1,7 +1,5 @@
 spring:
-  main:
-    allow-bean-definition-overriding: true
+  profiles:
+    active: dev
   application:
-    name: msg-oauth
-server:
-  port: 8082
+    name: msg-auth
