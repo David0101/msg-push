@@ -1,5 +1,3 @@
-package com.jim.msg.push.auth.utils;
-
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
